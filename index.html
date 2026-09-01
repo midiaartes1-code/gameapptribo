@@ -24,28 +24,42 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .person-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .person-card{background:#fafafa;border:1px solid #e5e5e5;border-radius:12px;padding:1rem}
 .person-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;flex-shrink:0}
-.av-m{background:#e8f5d0;color:#3d6b00}
-.av-j{background:#e8f5d0;color:#3d6b00}
-.av-jv{background:#fef3c7;color:#92400e}
+.avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0}
+.av-marcus{background:#e8f5d0;color:#3d6b00}
+.av-juan{background:#e8f5d0;color:#3d6b00}
+.av-joaovitor{background:#fef3c7;color:#92400e}
+.av-diego{background:#dbeafe;color:#1e40af}
+.av-wallison{background:#dbeafe;color:#1e40af}
+.av-filipe{background:#dbeafe;color:#1e40af}
+.av-angelo{background:#dbeafe;color:#1e40af}
+.av-everson{background:#fce7f3;color:#9d174d}
 .av-a{background:#ede8f5;color:#3d0070}
 .av-r{background:#ede8f5;color:#3d0070}
-.person-name{font-size:15px;font-weight:500;color:#1a1a1a}
+.av-c{background:#ede8f5;color:#3d0070}
+.av-s{background:#ede8f5;color:#3d0070}
+.person-name{font-size:14px;font-weight:500;color:#1a1a1a}
 .person-role{font-size:12px;color:#999}
-.pts-display{font-size:30px;font-weight:500;color:#82b800;margin-bottom:2px}
-.pts-label{font-size:12px;color:#aaa;margin-bottom:12px}
-.progress-wrap{margin-bottom:8px}
+.pts-display{font-size:28px;font-weight:500;color:#82b800;margin-bottom:2px}
+.pts-label{font-size:12px;color:#aaa;margin-bottom:10px}
+.progress-wrap{margin-bottom:7px}
 .progress-label{display:flex;justify-content:space-between;font-size:11px;color:#aaa;margin-bottom:3px}
 .progress-bar{height:5px;background:#eee;border-radius:3px;overflow:hidden}
 .progress-fill{height:100%;border-radius:3px;transition:width .4s ease}
 .pf-bronze{background:#CD7F32}
 .pf-prata{background:#A8A9AD}
 .pf-ouro{background:#82b800}
-.badge{display:inline-block;font-size:11px;font-weight:500;padding:3px 9px;border-radius:6px;margin-top:6px}
+.badge{display:inline-block;font-size:11px;font-weight:500;padding:3px 9px;border-radius:6px;margin-top:5px}
 .badge-bronze{background:#fff3e0;color:#8b4513}
 .badge-prata{background:#f5f5f5;color:#555}
 .badge-ouro{background:#f0ffd6;color:#3d6b00}
 .badge-none{background:#f5f5f5;color:#aaa}
+.pizza-banner{background:linear-gradient(135deg,#ff6b35,#f7931e);border-radius:12px;padding:1rem 1.25rem;margin-bottom:12px;color:#fff;text-align:center}
+.pizza-banner .emoji{font-size:32px;margin-bottom:6px}
+.pizza-banner h3{font-size:16px;font-weight:700;margin-bottom:4px}
+.pizza-banner p{font-size:13px;opacity:.9}
+.pizza-banner-small{background:#fff8f0;border:1px solid #fed7aa;border-radius:10px;padding:.75rem 1rem;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.pizza-banner-small .emoji{font-size:24px}
+.pizza-banner-small p{font-size:13px;color:#9a3412;line-height:1.4}
 .service-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .service-btn{padding:9px 10px;border:1px solid #e5e5e5;border-radius:8px;background:#fff;cursor:pointer;text-align:left;transition:all .15s}
 .service-btn:hover{border-color:#ccc;background:#fafafa}
@@ -56,17 +70,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .meta-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
 .meta-card{background:#fafafa;border:1px solid #e5e5e5;border-radius:8px;padding:.75rem;text-align:center}
 .meta-nivel{font-size:11px;font-weight:500;color:#aaa;margin-bottom:3px}
-.meta-pts{font-size:15px;font-weight:500;color:#1a1a1a}
+.meta-pts{font-size:14px;font-weight:500;color:#1a1a1a}
 .meta-premio{font-size:12px;color:#82b800;font-weight:500}
-.ranking-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.ranking-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #f0f0f0}
 .ranking-item:last-child{border-bottom:none}
-.rank-num{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;flex-shrink:0}
+.rank-num{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0}
 .r1{background:#f0ffd6;color:#3d6b00}
 .r2{background:#f5f5f5;color:#555}
 .r3{background:#fff3e0;color:#8b4513}
-.rank-name{flex:1;font-size:14px;color:#1a1a1a}
-.rank-pts{font-size:14px;font-weight:500;color:#1a1a1a}
-.coletiva-total{font-size:38px;font-weight:500;color:#82b800;margin:6px 0 4px}
+.r4,.r5,.r6,.r7,.r8{background:#f9f9f9;color:#aaa}
+.rank-name{flex:1;font-size:13px;color:#1a1a1a}
+.rank-pts{font-size:13px;font-weight:500;color:#1a1a1a}
+.coletiva-total{font-size:36px;font-weight:500;color:#82b800;margin:6px 0 4px}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:9px 18px;border-radius:8px;font-size:13px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:100;white-space:nowrap}
 .toast.show{opacity:1}
 .reset-btn{padding:7px 14px;border:1px solid #e24b4a;border-radius:8px;background:transparent;color:#a32d2d;font-size:12px;cursor:pointer;margin-top:8px}
@@ -75,14 +90,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .hist-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #f5f5f5;font-size:13px}
 .hist-row:last-child{border-bottom:none}
 .undo-btn{padding:3px 8px;border:1px solid #e5e5e5;border-radius:5px;background:#fff;color:#666;font-size:11px;cursor:pointer;margin-left:6px}
-.undo-btn:hover{background:#fafafa}
 .admin-lock{text-align:center;padding:2rem 1rem}
 .admin-lock h3{font-size:16px;font-weight:500;color:#1a1a1a;margin-bottom:6px}
 .admin-lock p{font-size:13px;color:#999;margin-bottom:16px}
 .admin-input-wrap{display:flex;gap:8px;max-width:280px;margin:0 auto}
 .admin-input{flex:1;padding:9px 12px;border:1px solid #e5e5e5;border-radius:8px;font-size:14px;color:#1a1a1a;background:#fff}
 .admin-btn{padding:9px 16px;background:#1a1a1a;color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-weight:500}
-.admin-btn:hover{background:#333}
 .admin-content{display:none}
 .admin-person-block{margin-bottom:4px}
 .admin-person-title{display:flex;align-items:center;gap:10px;margin-bottom:10px;padding:8px 0}
@@ -94,16 +107,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .admin-hist-meta{font-size:12px;color:#aaa}
 .admin-hist-pts{font-size:13px;font-weight:600;color:#82b800;margin:0 10px}
 .admin-remove-btn{padding:3px 8px;border:1px solid #fca5a5;border-radius:5px;background:#fff;color:#e24b4a;font-size:11px;cursor:pointer;flex-shrink:0}
-.admin-remove-btn:hover{background:#fcebeb}
 .admin-empty{font-size:13px;color:#aaa;padding:8px 0}
 .day-group-title{font-size:11px;font-weight:600;color:#aaa;letter-spacing:.05em;text-transform:uppercase;margin:12px 0 6px;padding-top:10px;border-top:1px solid #f0f0f0}
 .day-group-title:first-child{border-top:none;margin-top:0}
 .admin-logout{padding:6px 12px;border:1px solid #e5e5e5;border-radius:8px;background:#fff;color:#666;font-size:12px;cursor:pointer}
-.admin-logout:hover{background:#fafafa}
 .admin-divider{height:1px;background:#f0f0f0;margin:12px 0}
+.hist-mes-card{background:#fafafa;border:1px solid #e5e5e5;border-radius:10px;padding:.75rem 1rem;margin-bottom:8px}
+.hist-mes-title{font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:8px}
+.hist-mes-row{display:flex;justify-content:space-between;font-size:13px;padding:4px 0;border-bottom:1px solid #f5f5f5}
+.hist-mes-row:last-child{border-bottom:none}
+.section-divider{height:1px;background:#f0f0f0;margin:16px 0}
 @media(max-width:420px){
   .person-grid{grid-template-columns:1fr}
   .service-grid{grid-template-columns:1fr}
+  .meta-row{grid-template-columns:1fr 1fr 1fr}
 }
 </style>
 </head>
@@ -130,35 +147,86 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <!-- PAINEL -->
 <div id="tab-painel" class="panel active">
+  <div id="pizza-banner-top" style="display:none">
+    <div class="pizza-banner">
+      <div class="emoji">🍕</div>
+      <h3>Meta coletiva batida!</h3>
+      <p>Noite da pizza na Pizzaria Raiz no último dia do mês. Toda a equipe!</p>
+    </div>
+  </div>
+
   <div class="card">
-    <div class="card-title">Barbeiros</div>
+    <div class="card-title">Barbeiros — Centro</div>
     <div class="person-grid">
       <div class="person-card">
-        <div class="person-header"><div class="avatar av-m">M</div><div><div class="person-name">Marcus</div><div class="person-role">Barbeiro</div></div></div>
-        <div class="pts-display" id="pts-marcus">0</div>
-        <div class="pts-label">pontos no mês</div>
-        <div class="progress-wrap"><div class="progress-label"><span>Bronze</span><span>950 pts</span></div><div class="progress-bar"><div class="progress-fill pf-bronze" id="prog-marcus-b" style="width:0%"></div></div></div>
-        <div class="progress-wrap"><div class="progress-label"><span>Prata</span><span>1450 pts</span></div><div class="progress-bar"><div class="progress-fill pf-prata" id="prog-marcus-p" style="width:0%"></div></div></div>
-        <div class="progress-wrap"><div class="progress-label"><span>Ouro</span><span>1950 pts</span></div><div class="progress-bar"><div class="progress-fill pf-ouro" id="prog-marcus-o" style="width:0%"></div></div></div>
+        <div class="person-header"><div class="avatar av-marcus">M</div><div><div class="person-name">Marcus</div><div class="person-role">Barbeiro</div></div></div>
+        <div class="pts-display" id="pts-marcus">0</div><div class="pts-label">pontos no mês</div>
+        <div class="progress-wrap"><div class="progress-label"><span>Bronze</span><span>1200</span></div><div class="progress-bar"><div class="progress-fill pf-bronze" id="prog-marcus-b" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Prata</span><span>1700</span></div><div class="progress-bar"><div class="progress-fill pf-prata" id="prog-marcus-p" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Ouro</span><span>2200</span></div><div class="progress-bar"><div class="progress-fill pf-ouro" id="prog-marcus-o" style="width:0%"></div></div></div>
         <div id="badge-marcus" class="badge badge-none">Sem meta</div>
       </div>
       <div class="person-card">
-        <div class="person-header"><div class="avatar av-j">J</div><div><div class="person-name">Juan</div><div class="person-role">Barbeiro</div></div></div>
-        <div class="pts-display" id="pts-juan">0</div>
-        <div class="pts-label">pontos no mês</div>
-        <div class="progress-wrap"><div class="progress-label"><span>Bronze</span><span>950 pts</span></div><div class="progress-bar"><div class="progress-fill pf-bronze" id="prog-juan-b" style="width:0%"></div></div></div>
-        <div class="progress-wrap"><div class="progress-label"><span>Prata</span><span>1450 pts</span></div><div class="progress-bar"><div class="progress-fill pf-prata" id="prog-juan-p" style="width:0%"></div></div></div>
-        <div class="progress-wrap"><div class="progress-label"><span>Ouro</span><span>1950 pts</span></div><div class="progress-bar"><div class="progress-fill pf-ouro" id="prog-juan-o" style="width:0%"></div></div></div>
+        <div class="person-header"><div class="avatar av-juan">J</div><div><div class="person-name">Juan</div><div class="person-role">Barbeiro</div></div></div>
+        <div class="pts-display" id="pts-juan">0</div><div class="pts-label">pontos no mês</div>
+        <div class="progress-wrap"><div class="progress-label"><span>Bronze</span><span>900</span></div><div class="progress-bar"><div class="progress-fill pf-bronze" id="prog-juan-b" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Prata</span><span>1200</span></div><div class="progress-bar"><div class="progress-fill pf-prata" id="prog-juan-p" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Ouro</span><span>1700</span></div><div class="progress-bar"><div class="progress-fill pf-ouro" id="prog-juan-o" style="width:0%"></div></div></div>
         <div id="badge-juan" class="badge badge-none">Sem meta</div>
       </div>
       <div class="person-card">
-        <div class="person-header"><div class="avatar av-jv">JV</div><div><div class="person-name">João Victor</div><div class="person-role">Barbeiro</div></div></div>
-        <div class="pts-display" id="pts-joaovitor">0</div>
-        <div class="pts-label">pontos no mês</div>
-        <div class="progress-wrap"><div class="progress-label"><span>Bronze</span><span>400 pts</span></div><div class="progress-bar"><div class="progress-fill pf-bronze" id="prog-joaovitor-b" style="width:0%"></div></div></div>
-        <div class="progress-wrap"><div class="progress-label"><span>Prata</span><span>700 pts</span></div><div class="progress-bar"><div class="progress-fill pf-prata" id="prog-joaovitor-p" style="width:0%"></div></div></div>
-        <div class="progress-wrap"><div class="progress-label"><span>Ouro</span><span>1000 pts</span></div><div class="progress-bar"><div class="progress-fill pf-ouro" id="prog-joaovitor-o" style="width:0%"></div></div></div>
+        <div class="person-header"><div class="avatar av-joaovitor">JV</div><div><div class="person-name">João Victor</div><div class="person-role">Barbeiro</div></div></div>
+        <div class="pts-display" id="pts-joaovitor">0</div><div class="pts-label">pontos no mês</div>
+        <div class="progress-wrap"><div class="progress-label"><span>Bronze</span><span>500</span></div><div class="progress-bar"><div class="progress-fill pf-bronze" id="prog-joaovitor-b" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Prata</span><span>750</span></div><div class="progress-bar"><div class="progress-fill pf-prata" id="prog-joaovitor-p" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Ouro</span><span>1000</span></div><div class="progress-bar"><div class="progress-fill pf-ouro" id="prog-joaovitor-o" style="width:0%"></div></div></div>
         <div id="badge-joaovitor" class="badge badge-none">Sem meta</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Barbeiros — Jardim São Luís</div>
+    <div class="person-grid">
+      <div class="person-card">
+        <div class="person-header"><div class="avatar av-diego">D</div><div><div class="person-name">Diego</div><div class="person-role">Barbeiro</div></div></div>
+        <div class="pts-display" id="pts-diego">0</div><div class="pts-label">pontos no mês</div>
+        <div class="progress-wrap"><div class="progress-label"><span>Bronze</span><span>600</span></div><div class="progress-bar"><div class="progress-fill pf-bronze" id="prog-diego-b" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Prata</span><span>850</span></div><div class="progress-bar"><div class="progress-fill pf-prata" id="prog-diego-p" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Ouro</span><span>1100</span></div><div class="progress-bar"><div class="progress-fill pf-ouro" id="prog-diego-o" style="width:0%"></div></div></div>
+        <div id="badge-diego" class="badge badge-none">Sem meta</div>
+      </div>
+      <div class="person-card">
+        <div class="person-header"><div class="avatar av-wallison">W</div><div><div class="person-name">Wallison</div><div class="person-role">Barbeiro</div></div></div>
+        <div class="pts-display" id="pts-wallison">0</div><div class="pts-label">pontos no mês</div>
+        <div class="progress-wrap"><div class="progress-label"><span>Bronze</span><span>600</span></div><div class="progress-bar"><div class="progress-fill pf-bronze" id="prog-wallison-b" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Prata</span><span>850</span></div><div class="progress-bar"><div class="progress-fill pf-prata" id="prog-wallison-p" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Ouro</span><span>1100</span></div><div class="progress-bar"><div class="progress-fill pf-ouro" id="prog-wallison-o" style="width:0%"></div></div></div>
+        <div id="badge-wallison" class="badge badge-none">Sem meta</div>
+      </div>
+      <div class="person-card">
+        <div class="person-header"><div class="avatar av-filipe">F</div><div><div class="person-name">Filipe</div><div class="person-role">Barbeiro</div></div></div>
+        <div class="pts-display" id="pts-filipe">0</div><div class="pts-label">pontos no mês</div>
+        <div class="progress-wrap"><div class="progress-label"><span>Bronze</span><span>600</span></div><div class="progress-bar"><div class="progress-fill pf-bronze" id="prog-filipe-b" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Prata</span><span>850</span></div><div class="progress-bar"><div class="progress-fill pf-prata" id="prog-filipe-p" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Ouro</span><span>1100</span></div><div class="progress-bar"><div class="progress-fill pf-ouro" id="prog-filipe-o" style="width:0%"></div></div></div>
+        <div id="badge-filipe" class="badge badge-none">Sem meta</div>
+      </div>
+      <div class="person-card">
+        <div class="person-header"><div class="avatar av-angelo">A</div><div><div class="person-name">Angelo</div><div class="person-role">Barbeiro</div></div></div>
+        <div class="pts-display" id="pts-angelo">0</div><div class="pts-label">pontos no mês</div>
+        <div class="progress-wrap"><div class="progress-label"><span>Bronze</span><span>600</span></div><div class="progress-bar"><div class="progress-fill pf-bronze" id="prog-angelo-b" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Prata</span><span>850</span></div><div class="progress-bar"><div class="progress-fill pf-prata" id="prog-angelo-p" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Ouro</span><span>1100</span></div><div class="progress-bar"><div class="progress-fill pf-ouro" id="prog-angelo-o" style="width:0%"></div></div></div>
+        <div id="badge-angelo" class="badge badge-none">Sem meta</div>
+      </div>
+      <div class="person-card">
+        <div class="person-header"><div class="avatar av-everson">E</div><div><div class="person-name">Everson</div><div class="person-role">Barbeiro</div></div></div>
+        <div class="pts-display" id="pts-everson">0</div><div class="pts-label">pontos no mês</div>
+        <div class="progress-wrap"><div class="progress-label"><span>Bronze</span><span>300</span></div><div class="progress-bar"><div class="progress-fill pf-bronze" id="prog-everson-b" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Prata</span><span>500</span></div><div class="progress-bar"><div class="progress-fill pf-prata" id="prog-everson-p" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Ouro</span><span>750</span></div><div class="progress-bar"><div class="progress-fill pf-ouro" id="prog-everson-o" style="width:0%"></div></div></div>
+        <div id="badge-everson" class="badge badge-none">Sem meta</div>
       </div>
     </div>
   </div>
@@ -168,32 +236,50 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="person-grid">
       <div class="person-card">
         <div class="person-header"><div class="avatar av-a">A</div><div><div class="person-name">Adrielle</div><div class="person-role">Recepcionista</div></div></div>
-        <div class="pts-display" id="pts-adrielle">0</div>
-        <div class="pts-label">pontos no mês</div>
-        <div class="progress-wrap"><div class="progress-label"><span>Bronze</span><span>500 pts</span></div><div class="progress-bar"><div class="progress-fill pf-bronze" id="prog-adrielle-b" style="width:0%"></div></div></div>
-        <div class="progress-wrap"><div class="progress-label"><span>Prata</span><span>800 pts</span></div><div class="progress-bar"><div class="progress-fill pf-prata" id="prog-adrielle-p" style="width:0%"></div></div></div>
-        <div class="progress-wrap"><div class="progress-label"><span>Ouro</span><span>1100 pts</span></div><div class="progress-bar"><div class="progress-fill pf-ouro" id="prog-adrielle-o" style="width:0%"></div></div></div>
+        <div class="pts-display" id="pts-adrielle">0</div><div class="pts-label">pontos no mês</div>
+        <div class="progress-wrap"><div class="progress-label"><span>Bronze</span><span>500</span></div><div class="progress-bar"><div class="progress-fill pf-bronze" id="prog-adrielle-b" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Prata</span><span>800</span></div><div class="progress-bar"><div class="progress-fill pf-prata" id="prog-adrielle-p" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Ouro</span><span>1100</span></div><div class="progress-bar"><div class="progress-fill pf-ouro" id="prog-adrielle-o" style="width:0%"></div></div></div>
         <div id="badge-adrielle" class="badge badge-none">Sem meta</div>
       </div>
       <div class="person-card">
         <div class="person-header"><div class="avatar av-r">R</div><div><div class="person-name">Raiany</div><div class="person-role">Recepcionista</div></div></div>
-        <div class="pts-display" id="pts-raiany">0</div>
-        <div class="pts-label">pontos no mês</div>
-        <div class="progress-wrap"><div class="progress-label"><span>Bronze</span><span>500 pts</span></div><div class="progress-bar"><div class="progress-fill pf-bronze" id="prog-raiany-b" style="width:0%"></div></div></div>
-        <div class="progress-wrap"><div class="progress-label"><span>Prata</span><span>800 pts</span></div><div class="progress-bar"><div class="progress-fill pf-prata" id="prog-raiany-p" style="width:0%"></div></div></div>
-        <div class="progress-wrap"><div class="progress-label"><span>Ouro</span><span>1100 pts</span></div><div class="progress-bar"><div class="progress-fill pf-ouro" id="prog-raiany-o" style="width:0%"></div></div></div>
+        <div class="pts-display" id="pts-raiany">0</div><div class="pts-label">pontos no mês</div>
+        <div class="progress-wrap"><div class="progress-label"><span>Bronze</span><span>500</span></div><div class="progress-bar"><div class="progress-fill pf-bronze" id="prog-raiany-b" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Prata</span><span>800</span></div><div class="progress-bar"><div class="progress-fill pf-prata" id="prog-raiany-p" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Ouro</span><span>1100</span></div><div class="progress-bar"><div class="progress-fill pf-ouro" id="prog-raiany-o" style="width:0%"></div></div></div>
         <div id="badge-raiany" class="badge badge-none">Sem meta</div>
+      </div>
+      <div class="person-card">
+        <div class="person-header"><div class="avatar av-c">C</div><div><div class="person-name">Camilia</div><div class="person-role">Recepcionista</div></div></div>
+        <div class="pts-display" id="pts-camilia">0</div><div class="pts-label">pontos no mês</div>
+        <div class="progress-wrap"><div class="progress-label"><span>Bronze</span><span>500</span></div><div class="progress-bar"><div class="progress-fill pf-bronze" id="prog-camilia-b" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Prata</span><span>800</span></div><div class="progress-bar"><div class="progress-fill pf-prata" id="prog-camilia-p" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Ouro</span><span>1100</span></div><div class="progress-bar"><div class="progress-fill pf-ouro" id="prog-camilia-o" style="width:0%"></div></div></div>
+        <div id="badge-camilia" class="badge badge-none">Sem meta</div>
+      </div>
+      <div class="person-card">
+        <div class="person-header"><div class="avatar av-s">S</div><div><div class="person-name">Sofia</div><div class="person-role">Recepcionista</div></div></div>
+        <div class="pts-display" id="pts-sofia">0</div><div class="pts-label">pontos no mês</div>
+        <div class="progress-wrap"><div class="progress-label"><span>Bronze</span><span>500</span></div><div class="progress-bar"><div class="progress-fill pf-bronze" id="prog-sofia-b" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Prata</span><span>800</span></div><div class="progress-bar"><div class="progress-fill pf-prata" id="prog-sofia-p" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>Ouro</span><span>1100</span></div><div class="progress-bar"><div class="progress-fill pf-ouro" id="prog-sofia-o" style="width:0%"></div></div></div>
+        <div id="badge-sofia" class="badge badge-none">Sem meta</div>
       </div>
     </div>
   </div>
 
   <div class="card">
     <div class="card-title">Meta coletiva da barbearia</div>
+    <div class="pizza-banner-small" id="pizza-small" style="display:none">
+      <div class="emoji">🍕</div>
+      <p><strong>Meta batida!</strong> Noite da pizza na Pizzaria Raiz no último dia do mês!</p>
+    </div>
     <div class="coletiva-total" id="pts-coletiva">0</div>
-    <div class="pts-label">pontos somados (toda a equipe)</div>
-    <div class="progress-wrap"><div class="progress-label"><span>Bronze — R$25 cada</span><span>2350 pts</span></div><div class="progress-bar"><div class="progress-fill pf-bronze" id="prog-col-b" style="width:0%"></div></div></div>
-    <div class="progress-wrap"><div class="progress-label"><span>Prata — R$75 cada</span><span>3950 pts</span></div><div class="progress-bar"><div class="progress-fill pf-prata" id="prog-col-p" style="width:0%"></div></div></div>
-    <div class="progress-wrap"><div class="progress-label"><span>Ouro — R$125 cada</span><span>5650 pts</span></div><div class="progress-bar"><div class="progress-fill pf-ouro" id="prog-col-o" style="width:0%"></div></div></div>
+    <div class="pts-label">pontos somados de toda a equipe</div>
+    <div class="progress-wrap"><div class="progress-label"><span>Bronze — barb R$125 / recep R$62</span><span>5000</span></div><div class="progress-bar"><div class="progress-fill pf-bronze" id="prog-col-b" style="width:0%"></div></div></div>
+    <div class="progress-wrap"><div class="progress-label"><span>Prata — barb R$250 / recep R$125</span><span>7500</span></div><div class="progress-bar"><div class="progress-fill pf-prata" id="prog-col-p" style="width:0%"></div></div></div>
+    <div class="progress-wrap"><div class="progress-label"><span>Ouro — barb R$500 / recep R$250</span><span>10000</span></div><div class="progress-bar"><div class="progress-fill pf-ouro" id="prog-col-o" style="width:0%"></div></div></div>
     <div id="badge-coletiva" class="badge badge-none">Sem meta</div>
   </div>
 </div>
@@ -204,11 +290,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="card-title">Quem está lançando?</div>
     <select class="select-person" id="pessoa-sel">
       <option value="">Selecione</option>
-      <option value="marcus">Marcus (barbeiro)</option>
-      <option value="juan">Juan (barbeiro)</option>
-      <option value="joaovitor">João Victor (barbeiro)</option>
-      <option value="adrielle">Adrielle (recepcionista)</option>
-      <option value="raiany">Raiany (recepcionista)</option>
+      <optgroup label="Barbeiros — Centro">
+        <option value="marcus">Marcus</option>
+        <option value="juan">Juan</option>
+        <option value="joaovitor">João Victor</option>
+      </optgroup>
+      <optgroup label="Barbeiros — Jardim São Luís">
+        <option value="diego">Diego</option>
+        <option value="wallison">Wallison</option>
+        <option value="filipe">Filipe</option>
+        <option value="angelo">Angelo</option>
+        <option value="everson">Everson</option>
+      </optgroup>
+      <optgroup label="Recepcionistas">
+        <option value="adrielle">Adrielle</option>
+        <option value="raiany">Raiany</option>
+        <option value="camilia">Camilia</option>
+        <option value="sofia">Sofia</option>
+      </optgroup>
     </select>
   </div>
   <div id="servicos-barbeiro" style="display:none">
@@ -241,34 +340,52 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <!-- METAS -->
 <div id="tab-metas" class="panel">
-  <div class="card">
-    <div class="card-title">Metas individuais — Marcus e Juan</div>
-    <div class="meta-row">
-      <div class="meta-card"><div class="meta-nivel">Bronze</div><div class="meta-pts">950 pts</div><div class="meta-premio">R$100</div></div>
-      <div class="meta-card"><div class="meta-nivel">Prata</div><div class="meta-pts">1450 pts</div><div class="meta-premio">R$150</div></div>
-      <div class="meta-card"><div class="meta-nivel">Ouro</div><div class="meta-pts">1950 pts</div><div class="meta-premio">R$400</div></div>
-    </div>
-    <div class="info-box">Quem terminar o mês com mais pontos leva +R$150 de bônus campeão.</div>
+  <div class="pizza-banner-small">
+    <div class="emoji">🍕</div>
+    <p><strong>Meta coletiva batida = Noite da pizza!</strong> Pizzaria Raiz, último dia do mês, toda a equipe após o expediente.</p>
   </div>
   <div class="card">
-    <div class="card-title">Metas individuais — João Victor</div>
+    <div class="card-title">Marcus</div>
     <div class="meta-row">
-      <div class="meta-card"><div class="meta-nivel">Bronze</div><div class="meta-pts">400 pts</div><div class="meta-premio">R$100</div></div>
-      <div class="meta-card"><div class="meta-nivel">Prata</div><div class="meta-pts">700 pts</div><div class="meta-premio">R$150</div></div>
+      <div class="meta-card"><div class="meta-nivel">Bronze</div><div class="meta-pts">1200 pts</div><div class="meta-premio">R$100</div></div>
+      <div class="meta-card"><div class="meta-nivel">Prata</div><div class="meta-pts">1700 pts</div><div class="meta-premio">R$150</div></div>
+      <div class="meta-card"><div class="meta-nivel">Ouro</div><div class="meta-pts">2200 pts</div><div class="meta-premio">R$400</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Juan</div>
+    <div class="meta-row">
+      <div class="meta-card"><div class="meta-nivel">Bronze</div><div class="meta-pts">900 pts</div><div class="meta-premio">R$100</div></div>
+      <div class="meta-card"><div class="meta-nivel">Prata</div><div class="meta-pts">1200 pts</div><div class="meta-premio">R$150</div></div>
+      <div class="meta-card"><div class="meta-nivel">Ouro</div><div class="meta-pts">1700 pts</div><div class="meta-premio">R$400</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Diego · Wallison · Filipe · Angelo</div>
+    <div class="meta-row">
+      <div class="meta-card"><div class="meta-nivel">Bronze</div><div class="meta-pts">600 pts</div><div class="meta-premio">R$100</div></div>
+      <div class="meta-card"><div class="meta-nivel">Prata</div><div class="meta-pts">850 pts</div><div class="meta-premio">R$150</div></div>
+      <div class="meta-card"><div class="meta-nivel">Ouro</div><div class="meta-pts">1100 pts</div><div class="meta-premio">R$400</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">João Victor</div>
+    <div class="meta-row">
+      <div class="meta-card"><div class="meta-nivel">Bronze</div><div class="meta-pts">500 pts</div><div class="meta-premio">R$100</div></div>
+      <div class="meta-card"><div class="meta-nivel">Prata</div><div class="meta-pts">750 pts</div><div class="meta-premio">R$150</div></div>
       <div class="meta-card"><div class="meta-nivel">Ouro</div><div class="meta-pts">1000 pts</div><div class="meta-premio">R$400</div></div>
     </div>
   </div>
   <div class="card">
-    <div class="card-title">Meta coletiva — toda a equipe</div>
+    <div class="card-title">Everson</div>
     <div class="meta-row">
-      <div class="meta-card"><div class="meta-nivel">Bronze</div><div class="meta-pts">2350 pts</div><div class="meta-premio">R$25 cada</div></div>
-      <div class="meta-card"><div class="meta-nivel">Prata</div><div class="meta-pts">3950 pts</div><div class="meta-premio">R$75 cada</div></div>
-      <div class="meta-card"><div class="meta-nivel">Ouro</div><div class="meta-pts">5650 pts</div><div class="meta-premio">R$125 cada</div></div>
+      <div class="meta-card"><div class="meta-nivel">Bronze</div><div class="meta-pts">300 pts</div><div class="meta-premio">R$100</div></div>
+      <div class="meta-card"><div class="meta-nivel">Prata</div><div class="meta-pts">500 pts</div><div class="meta-premio">R$150</div></div>
+      <div class="meta-card"><div class="meta-nivel">Ouro</div><div class="meta-pts">750 pts</div><div class="meta-premio">R$400</div></div>
     </div>
-    <div class="info-box">Prêmio total: Bronze R$125 · Prata R$375 · Ouro R$625 — dividido em 5 partes iguais.</div>
   </div>
   <div class="card">
-    <div class="card-title">Metas individuais — recepcionistas</div>
+    <div class="card-title">Recepcionistas — Adrielle · Raiany · Camilia · Sofia</div>
     <div class="meta-row">
       <div class="meta-card"><div class="meta-nivel">Bronze</div><div class="meta-pts">500 pts</div><div class="meta-premio">R$100</div></div>
       <div class="meta-card"><div class="meta-nivel">Prata</div><div class="meta-pts">800 pts</div><div class="meta-premio">R$200</div></div>
@@ -276,8 +393,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     </div>
   </div>
   <div class="card">
+    <div class="card-title">Meta coletiva — toda a equipe</div>
+    <div class="meta-row">
+      <div class="meta-card"><div class="meta-nivel">Bronze</div><div class="meta-pts">5000 pts</div><div class="meta-premio">Barb R$125 / Recep R$62</div></div>
+      <div class="meta-card"><div class="meta-nivel">Prata</div><div class="meta-pts">7500 pts</div><div class="meta-premio">Barb R$250 / Recep R$125</div></div>
+      <div class="meta-card"><div class="meta-nivel">Ouro</div><div class="meta-pts">10000 pts</div><div class="meta-premio">Barb R$500 / Recep R$250</div></div>
+    </div>
+    <div class="info-box">Campeão do mês (barbeiro com mais pontos) leva +R$150.</div>
+  </div>
+  <div class="card">
     <div class="card-title">Tabela de pontuação — barbeiros</div>
-    <div class="info-box">Acabamento: 10 · Penteado / Navalha / Design cera / Esfoliação facial / Máscara / Pigmentação / Depilação: 15 · Hidratação / Esfoliação capilar / Terapia facial / Camuflagem: 25 · Selagem / Botox topo: 40 · Botox completo: 60<br><br>Corte avulso: 10 · Converteu assinante: 80 · Produto até R$60: 20 · Produto acima R$61: 40 · Item do bar: 5</div>
+    <div class="info-box">Acabamento: 10 · Penteado / Design navalha ou cera / Esfoliação facial / Máscara / Pigmentação / Depilação: 15 · Hidratação / Esfoliação capilar / Terapia facial / Camuflagem: 25 · Selagem / Botox topo: 40 · Botox completo: 60<br><br>Corte avulso: 10 · Converteu assinante: 80 · Produto até R$60: 20 · Produto acima R$61: 40 · Item do bar: 5</div>
   </div>
   <div class="card">
     <div class="card-title">Tabela de pontuação — recepcionistas</div>
@@ -285,8 +411,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
   <div class="card">
     <div class="card-title">Encerrar mês</div>
-    <div class="info-box">Zera os pontos de todos e inicia novo ciclo. Apenas o dono deve fazer isso.</div>
-    <button class="reset-btn" onclick="confirmarReset()">Zerar e iniciar novo mês</button>
+    <div class="info-box">Salva o histórico do mês e zera os pontos para o novo ciclo. Apenas o dono deve fazer isso.</div>
+    <button class="reset-btn" onclick="confirmarReset()">Salvar histórico e iniciar novo mês</button>
   </div>
 </div>
 
@@ -315,7 +441,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <div style="font-size:14px;font-weight:600;color:#1a1a1a">Painel do Admin</div>
         <button class="admin-logout" onclick="adminLogout()">Sair</button>
       </div>
-      <div id="admin-body"></div>
+      <div class="tabs" style="margin-bottom:12px">
+        <button class="tab active" onclick="showAdminTab('atual',this)" style="font-size:12px;padding:5px 12px">Mês atual</button>
+        <button class="tab" onclick="showAdminTab('historico',this)" style="font-size:12px;padding:5px 12px">Histórico</button>
+      </div>
+      <div id="admin-atual"><div id="admin-body"></div></div>
+      <div id="admin-historico" style="display:none"><div id="historico-body"></div></div>
     </div>
   </div>
 </div>
@@ -325,7 +456,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBPx3cpPy9xuqExFtq0Q1SCqEufhcLej0w",
@@ -352,7 +483,13 @@ const SERVICOS_BARB = [
 
 const MESES=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 const DIAS=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-let estado={marcus:{pts:0,hist:[]},juan:{pts:0,hist:[]},joaovitor:{pts:0,hist:[]},adrielle:{pts:0,hist:[]},raiany:{pts:0,hist:[]}};
+const BARBEIROS=['marcus','juan','joaovitor','diego','wallison','filipe','angelo','everson'];
+const RECEPS=['adrielle','raiany','camilia','sofia'];
+const TODAS_PESSOAS=[...BARBEIROS,...RECEPS];
+
+let estado={};
+TODAS_PESSOAS.forEach(p=>{estado[p]={pts:0,hist:[]};});
+
 let ultimoLancamento=null;
 let adminLogado=false;
 
@@ -368,7 +505,7 @@ onSnapshot(docRef,(snap)=>{
   document.getElementById('sync-label').textContent='Sincronizado';
   if(snap.exists()){
     const data=snap.data();
-    Object.keys(estado).forEach(k=>{if(data[k])estado[k]=data[k];});
+    TODAS_PESSOAS.forEach(k=>{if(data[k])estado[k]=data[k];});
     updateUI();
     const activeTab=document.querySelector('.tab.active');
     if(activeTab&&activeTab.textContent.trim()==='Ranking') renderRanking();
@@ -381,7 +518,7 @@ onSnapshot(docRef,(snap)=>{
 
 async function saveToFirebase(){
   try{await setDoc(docRef,estado,{merge:true});}
-  catch(e){showToast('Erro ao salvar. Verifique a conexão.');}
+  catch(e){showToast('Erro ao salvar.');}
 }
 
 window.showTab=function(t,btn){
@@ -393,12 +530,18 @@ window.showTab=function(t,btn){
   if(t==='admin'&&adminLogado) renderAdminBody();
 };
 
+window.showAdminTab=function(t,btn){
+  document.getElementById('admin-atual').style.display=t==='atual'?'block':'none';
+  document.getElementById('admin-historico').style.display=t==='historico'?'block':'none';
+  document.querySelectorAll('#admin-content .tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(t==='historico') renderHistoricoMeses();
+};
+
 document.getElementById('pessoa-sel').addEventListener('change',function(){
   const v=this.value;
-  const isBarb=v==='marcus'||v==='juan'||v==='joaovitor';
-  const isRecep=v==='adrielle'||v==='raiany';
-  document.getElementById('servicos-barbeiro').style.display=isBarb?'block':'none';
-  document.getElementById('servicos-recep').style.display=isRecep?'block':'none';
+  document.getElementById('servicos-barbeiro').style.display=BARBEIROS.includes(v)?'block':'none';
+  document.getElementById('servicos-recep').style.display=RECEPS.includes(v)?'block':'none';
   renderHistorico();
 });
 
@@ -432,8 +575,8 @@ window.desfazerUltimo=function(){
 function renderHistorico(){
   const p=document.getElementById('pessoa-sel').value;
   if(!p) return;
-  const isBarb=p==='marcus'||p==='juan'||p==='joaovitor';
   const h=estado[p].hist;
+  const isBarb=BARBEIROS.includes(p);
   const el=document.getElementById(isBarb?'historico-barb':'historico-recep');
   if(!el) return;
   if(h.length===0){el.innerHTML='Nenhum lançamento ainda.';return;}
@@ -442,67 +585,86 @@ function renderHistorico(){
   ).join('');
 }
 
-function setProgress(id,val,max){const el=document.getElementById(id);if(el)el.style.width=Math.min(100,Math.round((val/max)*100))+'%';}
+function setP(id,val,max){const el=document.getElementById(id);if(el)el.style.width=Math.min(100,Math.round((val/max)*100))+'%';}
 
 function calcBadge(pts,niveis){
-  if(pts>=niveis[2]) return{txt:'Ouro',cls:'badge-ouro'};
-  if(pts>=niveis[1]) return{txt:'Prata',cls:'badge-prata'};
-  if(pts>=niveis[0]) return{txt:'Bronze',cls:'badge-bronze'};
+  if(pts>=niveis[2])return{txt:'Ouro',cls:'badge-ouro'};
+  if(pts>=niveis[1])return{txt:'Prata',cls:'badge-prata'};
+  if(pts>=niveis[0])return{txt:'Bronze',cls:'badge-bronze'};
   return{txt:'Sem meta',cls:'badge-none'};
 }
 
+const METAS={
+  marcus:[1200,1700,2200], juan:[900,1200,1700], joaovitor:[500,750,1000],
+  diego:[600,850,1100], wallison:[600,850,1100], filipe:[600,850,1100],
+  angelo:[600,850,1100], everson:[300,500,750],
+  adrielle:[500,800,1100], raiany:[500,800,1100], camilia:[500,800,1100], sofia:[500,800,1100]
+};
+
 function updateUI(){
-  const m=estado.marcus.pts,j=estado.juan.pts,jv=estado.joaovitor.pts,a=estado.adrielle.pts,r=estado.raiany.pts;
-  const col=m+j+jv+a+r;
-  document.getElementById('pts-marcus').textContent=m;
-  document.getElementById('pts-juan').textContent=j;
-  document.getElementById('pts-joaovitor').textContent=jv;
-  document.getElementById('pts-adrielle').textContent=a;
-  document.getElementById('pts-raiany').textContent=r;
+  const col=TODAS_PESSOAS.reduce((s,p)=>s+estado[p].pts,0);
   document.getElementById('pts-coletiva').textContent=col;
-  setProgress('prog-marcus-b',m,950);setProgress('prog-marcus-p',m,1450);setProgress('prog-marcus-o',m,1950);
-  setProgress('prog-juan-b',j,950);setProgress('prog-juan-p',j,1450);setProgress('prog-juan-o',j,1950);
-  setProgress('prog-joaovitor-b',jv,400);setProgress('prog-joaovitor-p',jv,700);setProgress('prog-joaovitor-o',jv,1000);
-  setProgress('prog-adrielle-b',a,500);setProgress('prog-adrielle-p',a,800);setProgress('prog-adrielle-o',a,1100);
-  setProgress('prog-raiany-b',r,500);setProgress('prog-raiany-p',r,800);setProgress('prog-raiany-o',r,1100);
-  setProgress('prog-col-b',col,2350);setProgress('prog-col-p',col,3950);setProgress('prog-col-o',col,5650);
-  ['marcus','juan'].forEach(p=>{const b=calcBadge(estado[p].pts,[950,1450,1950]);const el=document.getElementById('badge-'+p);el.textContent=b.txt;el.className='badge '+b.cls;});
-  const bjv=calcBadge(jv,[400,700,1000]);document.getElementById('badge-joaovitor').textContent=bjv.txt;document.getElementById('badge-joaovitor').className='badge '+bjv.cls;
-  ['adrielle','raiany'].forEach(p=>{const b=calcBadge(estado[p].pts,[500,800,1100]);const el=document.getElementById('badge-'+p);el.textContent=b.txt;el.className='badge '+b.cls;});
-  const bc=calcBadge(col,[2350,3950,5650]);
-  const ec=document.getElementById('badge-coletiva');ec.textContent=bc.txt;ec.className='badge '+bc.cls;
+  TODAS_PESSOAS.forEach(p=>{
+    const el=document.getElementById('pts-'+p);
+    if(el) el.textContent=estado[p].pts;
+    const m=METAS[p];
+    if(m){
+      setP('prog-'+p+'-b',estado[p].pts,m[0]);
+      setP('prog-'+p+'-p',estado[p].pts,m[1]);
+      setP('prog-'+p+'-o',estado[p].pts,m[2]);
+      const b=calcBadge(estado[p].pts,m);
+      const bd=document.getElementById('badge-'+p);
+      if(bd){bd.textContent=b.txt;bd.className='badge '+b.cls;}
+    }
+  });
+  setP('prog-col-b',col,5000);setP('prog-col-p',col,7500);setP('prog-col-o',col,10000);
+  const bc=calcBadge(col,[5000,7500,10000]);
+  const ec=document.getElementById('badge-coletiva');
+  if(ec){ec.textContent=bc.txt;ec.className='badge '+bc.cls;}
+  const pizzaBanner=document.getElementById('pizza-banner-top');
+  const pizzaSmall=document.getElementById('pizza-small');
+  if(col>=5000){
+    if(pizzaBanner) pizzaBanner.style.display='block';
+    if(pizzaSmall) pizzaSmall.style.display='flex';
+  } else {
+    if(pizzaBanner) pizzaBanner.style.display='none';
+    if(pizzaSmall) pizzaSmall.style.display='none';
+  }
 }
 
 function renderRanking(){
-  const barb=[
-    {n:'Marcus',p:estado.marcus.pts,av:'av-m'},
-    {n:'Juan',p:estado.juan.pts,av:'av-j'},
-    {n:'João Victor',p:estado.joaovitor.pts,av:'av-jv'}
-  ].sort((a,b)=>b.p-a.p);
-  const recep=[{n:'Adrielle',p:estado.adrielle.pts,av:'av-a'},{n:'Raiany',p:estado.raiany.pts,av:'av-r'}].sort((a,b)=>b.p-a.p);
-  const ranks=['r1','r2','r3'];
-  document.getElementById('ranking-barb').innerHTML=barb.map((x,i)=>`<div class="ranking-item"><div class="rank-num ${ranks[i]}">${i+1}</div><div class="avatar ${x.av}" style="width:32px;height:32px;font-size:11px">${x.n[0]}</div><div class="rank-name">${x.n}</div><div class="rank-pts">${x.p} pts</div></div>`).join('');
-  document.getElementById('ranking-recep').innerHTML=recep.map((x,i)=>`<div class="ranking-item"><div class="rank-num ${ranks[i]}">${i+1}</div><div class="avatar ${x.av}" style="width:32px;height:32px;font-size:12px">${x.n[0]}</div><div class="rank-name">${x.n}</div><div class="rank-pts">${x.p} pts</div></div>`).join('');
-  const mv=estado.marcus.pts,jv=estado.juan.pts,jvv=estado.joaovitor.pts;
-  const todos=[{n:'Marcus',p:mv},{n:'Juan',p:jv},{n:'João Victor',p:jvv}].sort((a,b)=>b.p-a.p);
+  const barb=BARBEIROS.map(p=>({n:p.charAt(0).toUpperCase()+p.slice(1),p:estado[p].pts,av:'av-'+p})).sort((a,b)=>b.p-a.p);
+  const recep=RECEPS.map(p=>({n:p.charAt(0).toUpperCase()+p.slice(1),p:estado[p].pts,av:'av-'+p[0]})).sort((a,b)=>b.p-a.p);
+  const ranks=['r1','r2','r3','r4','r5','r6','r7','r8'];
+  const nomes={marcus:'Marcus',juan:'Juan',joaovitor:'João Victor',diego:'Diego',wallison:'Wallison',filipe:'Filipe',angelo:'Angelo',everson:'Everson',adrielle:'Adrielle',raiany:'Raiany',camilia:'Camilia',sofia:'Sofia'};
+  document.getElementById('ranking-barb').innerHTML=barb.map((x,i)=>`<div class="ranking-item"><div class="rank-num ${ranks[i]}">${i+1}</div><div class="avatar av-${x.n.toLowerCase()}" style="width:30px;height:30px;font-size:11px">${x.n[0]}</div><div class="rank-name">${nomes[x.n.toLowerCase()]||x.n}</div><div class="rank-pts">${x.p} pts</div></div>`).join('');
+  document.getElementById('ranking-recep').innerHTML=recep.map((x,i)=>`<div class="ranking-item"><div class="rank-num ${ranks[i]}">${i+1}</div><div class="avatar av-${x.n[0].toLowerCase()}" style="width:30px;height:30px;font-size:11px">${x.n[0]}</div><div class="rank-name">${x.n}</div><div class="rank-pts">${x.p} pts</div></div>`).join('');
+  const sorted=BARBEIROS.map(p=>({n:nomes[p]||p,p:estado[p].pts})).sort((a,b)=>b.p-a.p);
   let d='';
-  if(mv===0&&jv===0&&jvv===0) d='Nenhum ponto lançado ainda. Que comecem!';
-  else if(todos[0].p===todos[1].p) d='Empate entre '+todos[0].n+' e '+todos[1].n+' com '+todos[0].p+' pts cada.';
-  else d=todos[0].n+' está na frente com '+todos[0].p+' pts. Bônus de R$150 em jogo.';
+  if(sorted[0].p===0) d='Nenhum ponto lançado ainda. Que comecem!';
+  else if(sorted[0].p===sorted[1].p) d='Empate entre '+sorted[0].n+' e '+sorted[1].n+' com '+sorted[0].p+' pts.';
+  else d=sorted[0].n+' está na frente com '+sorted[0].p+' pts. Bônus de R$150 em jogo.';
   document.getElementById('disputa-info').textContent=d;
 }
 
+// ADMIN
 const PESSOAS_INFO=[
-  {key:'marcus',nome:'Marcus',role:'Barbeiro',av:'av-m'},
-  {key:'juan',nome:'Juan',role:'Barbeiro',av:'av-j'},
-  {key:'joaovitor',nome:'João Victor',role:'Barbeiro',av:'av-jv'},
-  {key:'adrielle',nome:'Adrielle',role:'Recepcionista',av:'av-a'},
-  {key:'raiany',nome:'Raiany',role:'Recepcionista',av:'av-r'}
+  {key:'marcus',nome:'Marcus',role:'Barbeiro'},
+  {key:'juan',nome:'Juan',role:'Barbeiro'},
+  {key:'joaovitor',nome:'João Victor',role:'Barbeiro'},
+  {key:'diego',nome:'Diego',role:'Barbeiro'},
+  {key:'wallison',nome:'Wallison',role:'Barbeiro'},
+  {key:'filipe',nome:'Filipe',role:'Barbeiro'},
+  {key:'angelo',nome:'Angelo',role:'Barbeiro'},
+  {key:'everson',nome:'Everson',role:'Barbeiro'},
+  {key:'adrielle',nome:'Adrielle',role:'Recepcionista'},
+  {key:'raiany',nome:'Raiany',role:'Recepcionista'},
+  {key:'camilia',nome:'Camilia',role:'Recepcionista'},
+  {key:'sofia',nome:'Sofia',role:'Recepcionista'},
 ];
 
 window.verificarSenha=function(){
-  const senha=document.getElementById('admin-senha').value;
-  if(senha==='midia123'){
+  if(document.getElementById('admin-senha').value==='midia123'){
     adminLogado=true;
     document.getElementById('admin-lock-screen').style.display='none';
     document.getElementById('admin-content').style.display='block';
@@ -546,24 +708,40 @@ function renderAdminBody(){
       ?'<div class="admin-empty">Nenhum lançamento ainda.</div>'
       :Object.entries(grupos).map(([day,items])=>`
         <div class="day-group-title">${day}</div>
-        ${items.map(x=>`
-          <div class="admin-hist-row">
-            <span class="admin-hist-label">${x.label}</span>
-            <div style="display:flex;align-items:center;gap:4px">
-              <span class="admin-hist-meta">${x.hora||''}</span>
-              <span class="admin-hist-pts">+${x.pts}</span>
-              <button class="admin-remove-btn" onclick="removerLancamento('${p.key}',${x.id})">remover</button>
-            </div>
-          </div>`).join('')}`).join('');
-    return `<div class="admin-person-block"><div class="admin-person-title"><div class="avatar ${p.av}" style="width:32px;height:32px;font-size:11px">${p.nome[0]}</div><span class="admin-person-name">${p.nome}</span><span class="admin-person-pts">${pts} pts</span><span style="font-size:12px;color:#aaa;margin-left:4px">${p.role}</span></div>${histHTML}</div>${idx<PESSOAS_INFO.length-1?'<div class="admin-divider"></div>':''}`;
+        ${items.map(x=>`<div class="admin-hist-row"><span class="admin-hist-label">${x.label}</span><div style="display:flex;align-items:center;gap:4px"><span class="admin-hist-meta">${x.hora||''}</span><span class="admin-hist-pts">+${x.pts}</span><button class="admin-remove-btn" onclick="removerLancamento('${p.key}',${x.id})">remover</button></div></div>`).join('')}`).join('');
+    return `<div class="admin-person-block"><div class="admin-person-title"><div class="avatar av-${p.key}" style="width:30px;height:30px;font-size:11px">${p.nome[0]}</div><span class="admin-person-name">${p.nome}</span><span class="admin-person-pts">${pts} pts</span><span style="font-size:12px;color:#aaa;margin-left:4px">${p.role}</span></div>${histHTML}</div>${idx<PESSOAS_INFO.length-1?'<div class="admin-divider"></div>':''}`;
   }).join('');
 }
 
+async function renderHistoricoMeses(){
+  const body=document.getElementById('historico-body');
+  body.innerHTML='<div style="font-size:13px;color:#aaa;padding:1rem 0">Carregando...</div>';
+  try{
+    const snap=await getDocs(collection(db,'historico'));
+    if(snap.empty){body.innerHTML='<div style="font-size:13px;color:#aaa;padding:1rem 0">Nenhum histórico salvo ainda.</div>';return;}
+    const docs=[...snap.docs].sort((a,b)=>b.id.localeCompare(a.id));
+    body.innerHTML=docs.map(d=>{
+      const data=d.data();
+      const [ano,mes]=d.id.split('-');
+      const nomeMes=MESES[parseInt(mes)-1]+' '+ano;
+      const rows=PESSOAS_INFO.map(p=>{
+        const pts=data[p.key]?.pts||0;
+        return `<div class="hist-mes-row"><span>${p.nome}</span><span style="color:#82b800;font-weight:500">${pts} pts</span></div>`;
+      }).join('');
+      const total=TODAS_PESSOAS.reduce((s,p)=>s+(data[p]?.pts||0),0);
+      return `<div class="hist-mes-card"><div class="hist-mes-title">📅 ${nomeMes} — Total equipe: ${total} pts</div>${rows}</div>`;
+    }).join('');
+  }catch(e){body.innerHTML='<div style="font-size:13px;color:#aaa">Erro ao carregar histórico.</div>';}
+}
+
 window.confirmarReset=function(){
-  if(confirm('Zerar todos os pontos e iniciar novo mês? Esta ação não pode ser desfeita.')){
-    Object.keys(estado).forEach(p=>{estado[p].pts=0;estado[p].hist=[];});
-    saveToFirebase();updateUI();
-    showToast('Novo mês iniciado. Pontos zerados.');
+  if(confirm('Salvar o histórico de '+getMesAtual()+' e zerar os pontos? Esta ação não pode ser desfeita.')){
+    const docId=getDocId();
+    setDoc(doc(db,'historico',docId),estado,{merge:false}).then(()=>{
+      Object.keys(estado).forEach(p=>{estado[p].pts=0;estado[p].hist=[];});
+      saveToFirebase();updateUI();
+      showToast('Histórico salvo. Novo mês iniciado.');
+    }).catch(()=>showToast('Erro ao salvar histórico.'));
   }
 };
 
@@ -573,8 +751,7 @@ function showToast(msg){
   setTimeout(()=>t.classList.remove('show'),2500);
 }
 
-renderServicos();
-updateUI();
+renderServicos();updateUI();
 </script>
 </body>
 </html>

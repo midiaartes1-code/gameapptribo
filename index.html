@@ -409,11 +409,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="card-title">Tabela de pontuação — recepcionistas</div>
     <div class="info-box">Agendamento convertido: 5 · Item do bar: 5 · Reclamação resolvida: 15 · Produto até R$60: 20 · Produto acima R$61: 40 · Converteu assinante: 50</div>
   </div>
-  <div class="card">
-    <div class="card-title">Encerrar mês</div>
-    <div class="info-box">Salva o histórico do mês e zera os pontos para o novo ciclo. Apenas o dono deve fazer isso.</div>
-    <button class="reset-btn" onclick="confirmarReset()">Salvar histórico e iniciar novo mês</button>
-  </div>
+
 </div>
 
 <!-- RANKING -->
@@ -444,9 +440,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="tabs" style="margin-bottom:12px">
         <button class="tab active" onclick="showAdminTab('atual',this)" style="font-size:12px;padding:5px 12px">Mês atual</button>
         <button class="tab" onclick="showAdminTab('historico',this)" style="font-size:12px;padding:5px 12px">Histórico</button>
+        <button class="tab" onclick="showAdminTab('encerrar',this)" style="font-size:12px;padding:5px 12px;color:#a32d2d;border-color:#fca5a5">Encerrar mês</button>
       </div>
       <div id="admin-atual"><div id="admin-body"></div></div>
       <div id="admin-historico" style="display:none"><div id="historico-body"></div></div>
+      <div id="admin-encerrar" style="display:none">
+        <div class="info-box" style="border-color:#fca5a5;background:#fff5f5">⚠️ Esta ação salva o histórico do mês atual e zera todos os pontos. Só faça isso no último dia do mês. Esta ação não pode ser desfeita.</div>
+        <div style="margin-bottom:10px;font-size:13px;color:#666">Digite <strong>CONFIRMAR</strong> para continuar:</div>
+        <div style="display:flex;gap:8px">
+          <input class="admin-input" id="confirm-reset-input" placeholder="Digite CONFIRMAR" style="flex:1">
+          <button class="admin-btn" style="background:#a32d2d" onclick="confirmarReset()">Zerar mês</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -533,6 +538,7 @@ window.showTab=function(t,btn){
 window.showAdminTab=function(t,btn){
   document.getElementById('admin-atual').style.display=t==='atual'?'block':'none';
   document.getElementById('admin-historico').style.display=t==='historico'?'block':'none';
+  document.getElementById('admin-encerrar').style.display=t==='encerrar'?'block':'none';
   document.querySelectorAll('#admin-content .tab').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   if(t==='historico') renderHistoricoMeses();
@@ -735,14 +741,18 @@ async function renderHistoricoMeses(){
 }
 
 window.confirmarReset=function(){
-  if(confirm('Salvar o histórico de '+getMesAtual()+' e zerar os pontos? Esta ação não pode ser desfeita.')){
-    const docId=getDocId();
-    setDoc(doc(db,'historico',docId),estado,{merge:false}).then(()=>{
-      Object.keys(estado).forEach(p=>{estado[p].pts=0;estado[p].hist=[];});
-      saveToFirebase();updateUI();
-      showToast('Histórico salvo. Novo mês iniciado.');
-    }).catch(()=>showToast('Erro ao salvar histórico.'));
+  const input=document.getElementById('confirm-reset-input');
+  if(!input||input.value.trim().toUpperCase()!=='CONFIRMAR'){
+    showToast('Digite CONFIRMAR para continuar.');
+    return;
   }
+  const docId=getDocId();
+  setDoc(doc(db,'historico',docId),estado,{merge:false}).then(()=>{
+    TODAS_PESSOAS.forEach(p=>{estado[p].pts=0;estado[p].hist=[];});
+    saveToFirebase();updateUI();
+    input.value='';
+    showToast('Histórico salvo. Novo mês iniciado.');
+  }).catch(()=>showToast('Erro ao salvar histórico.'));
 };
 
 function showToast(msg){

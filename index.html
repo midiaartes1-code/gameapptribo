@@ -565,6 +565,7 @@ window.addPts=function(pts,label){
   estado[p].hist.push(entry);
   ultimoLancamento={pessoa:p,pts,id:entry.id};
   saveToFirebase();updateUI();renderHistorico();
+  salvarBackupDiario();
   showToast('+'+pts+' pts — '+label);
 };
 
@@ -719,24 +720,90 @@ function renderAdminBody(){
   }).join('');
 }
 
+// BACKUP AUTOMÁTICO DIÁRIO
+function getBackupId(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
+function getLastBackupKey(){return 'tribo_last_backup';}
+
+async function salvarBackupDiario(){
+  const hoje=getBackupId();
+  const ultimoBackup=localStorage.getItem(getLastBackupKey());
+  if(ultimoBackup===hoje) return; // já salvou hoje
+  const totalPts=TODAS_PESSOAS.reduce((s,p)=>s+estado[p].pts,0);
+  if(totalPts===0) return; // não salva se tudo zerado
+  try{
+    await setDoc(doc(db,'backups',hoje),{...estado,_savedAt:new Date().toISOString()},{merge:false});
+    localStorage.setItem(getLastBackupKey(),hoje);
+    console.log('Backup diário salvo:',hoje);
+  }catch(e){console.log('Erro no backup:',e);}
+}
+
+window.restaurarBackup=async function(backupId){
+  if(!confirm('Restaurar backup de '+backupId+'? Os pontos atuais serão substituídos pelos do backup.')) return;
+  try{
+    const snap=await getDoc(doc(db,'backups',backupId));
+    if(!snap.exists()){showToast('Backup não encontrado.');return;}
+    const data=snap.data();
+    TODAS_PESSOAS.forEach(k=>{if(data[k])estado[k]=data[k];});
+    await saveToFirebase();
+    updateUI();
+    showToast('Backup restaurado com sucesso!');
+    renderHistoricoMeses();
+  }catch(e){showToast('Erro ao restaurar backup.');}
+};
+
 async function renderHistoricoMeses(){
   const body=document.getElementById('historico-body');
   body.innerHTML='<div style="font-size:13px;color:#aaa;padding:1rem 0">Carregando...</div>';
   try{
-    const snap=await getDocs(collection(db,'historico'));
-    if(snap.empty){body.innerHTML='<div style="font-size:13px;color:#aaa;padding:1rem 0">Nenhum histórico salvo ainda.</div>';return;}
-    const docs=[...snap.docs].sort((a,b)=>b.id.localeCompare(a.id));
-    body.innerHTML=docs.map(d=>{
-      const data=d.data();
-      const [ano,mes]=d.id.split('-');
-      const nomeMes=MESES[parseInt(mes)-1]+' '+ano;
-      const rows=PESSOAS_INFO.map(p=>{
-        const pts=data[p.key]?.pts||0;
-        return `<div class="hist-mes-row"><span>${p.nome}</span><span style="color:#82b800;font-weight:500">${pts} pts</span></div>`;
+    const [snapMes, snapBack]=await Promise.all([
+      getDocs(collection(db,'historico')),
+      getDocs(collection(db,'backups'))
+    ]);
+
+    let html='';
+
+    // Backups diários
+    if(!snapBack.empty){
+      const backups=[...snapBack.docs].sort((a,b)=>b.id.localeCompare(a.id)).slice(0,10);
+      html+=`<div style="font-size:12px;font-weight:600;color:#aaa;letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px">Backups diários</div>`;
+      html+=backups.map(d=>{
+        const data=d.data();
+        const [ano,mes,dia]=d.id.split('-');
+        const label=dia+'/'+mes+'/'+ano;
+        const total=TODAS_PESSOAS.reduce((s,p)=>s+(data[p]?.pts||0),0);
+        const rows=PESSOAS_INFO.map(p=>{
+          const pts=data[p.key]?.pts||0;
+          return `<div class="hist-mes-row"><span>${p.nome}</span><span style="color:#82b800;font-weight:500">${pts} pts</span></div>`;
+        }).join('');
+        return `<div class="hist-mes-card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <div class="hist-mes-title" style="margin:0">📅 Backup ${label} — ${total} pts</div>
+            <button onclick="restaurarBackup('${d.id}')" style="padding:4px 10px;border:1px solid #82b800;border-radius:6px;background:#fff;color:#3d6b00;font-size:11px;cursor:pointer">Restaurar</button>
+          </div>
+          ${rows}
+        </div>`;
       }).join('');
-      const total=TODAS_PESSOAS.reduce((s,p)=>s+(data[p]?.pts||0),0);
-      return `<div class="hist-mes-card"><div class="hist-mes-title">📅 ${nomeMes} — Total equipe: ${total} pts</div>${rows}</div>`;
-    }).join('');
+    }
+
+    // Histórico mensal
+    if(!snapMes.empty){
+      const meses=[...snapMes.docs].sort((a,b)=>b.id.localeCompare(a.id));
+      html+=`<div style="font-size:12px;font-weight:600;color:#aaa;letter-spacing:.05em;text-transform:uppercase;margin:16px 0 8px">Histórico mensal</div>`;
+      html+=meses.map(d=>{
+        const data=d.data();
+        const [ano,mes]=d.id.split('-');
+        const nomeMes=MESES[parseInt(mes)-1]+' '+ano;
+        const rows=PESSOAS_INFO.map(p=>{
+          const pts=data[p.key]?.pts||0;
+          return `<div class="hist-mes-row"><span>${p.nome}</span><span style="color:#82b800;font-weight:500">${pts} pts</span></div>`;
+        }).join('');
+        const total=TODAS_PESSOAS.reduce((s,p)=>s+(data[p]?.pts||0),0);
+        return `<div class="hist-mes-card"><div class="hist-mes-title">📅 ${nomeMes} — Total: ${total} pts</div>${rows}</div>`;
+      }).join('');
+    }
+
+    if(!html) html='<div style="font-size:13px;color:#aaa;padding:1rem 0">Nenhum histórico salvo ainda.</div>';
+    body.innerHTML=html;
   }catch(e){body.innerHTML='<div style="font-size:13px;color:#aaa">Erro ao carregar histórico.</div>';}
 }
 
@@ -762,6 +829,7 @@ function showToast(msg){
 }
 
 renderServicos();updateUI();
+setTimeout(salvarBackupDiario, 3000);
 </script>
 </body>
 </html>

@@ -461,7 +461,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, getDocs, increment, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBPx3cpPy9xuqExFtq0Q1SCqEufhcLej0w",
@@ -521,9 +521,23 @@ onSnapshot(docRef,(snap)=>{
   document.getElementById('sync-label').textContent='Sem conexão';
 });
 
-async function saveToFirebase(){
-  try{await setDoc(docRef,estado,{merge:true});}
-  catch(e){showToast('Erro ao salvar.');}
+// CORREÇÃO DO BUG DE ZERAMENTO:
+// Antes, toda ação salvava o objeto "estado" INTEIRO (todas as 12 pessoas) no Firebase.
+// Se o navegador de alguém ainda não tivesse recebido os dados atualizados de outra pessoa
+// (por exemplo, logo ao abrir a página), esse envio sobrescrevia os pontos reais dela com
+// zero. Agora cada ação envia só o campo da pessoa afetada, usando increment()/arrayUnion()/
+// arrayRemove() do próprio Firestore — operações atômicas que nunca tocam nos dados de
+// ninguém mais e não dependem do que está em memória no navegador.
+async function salvarIncremento(pessoaKey,pts,entry){
+  try{
+    await setDoc(docRef,{[pessoaKey]:{pts:increment(pts),hist:arrayUnion(entry)}},{merge:true});
+  }catch(e){showToast('Erro ao salvar. Verifique a conexão.');}
+}
+
+async function salvarDecremento(pessoaKey,entry){
+  try{
+    await setDoc(docRef,{[pessoaKey]:{pts:increment(-entry.pts),hist:arrayRemove(entry)}},{merge:true});
+  }catch(e){showToast('Erro ao salvar. Verifique a conexão.');}
 }
 
 window.showTab=function(t,btn){
@@ -560,23 +574,25 @@ function renderServicos(){
 window.addPts=function(pts,label){
   const p=document.getElementById('pessoa-sel').value;
   if(!p){showToast('Selecione uma pessoa primeiro');return;}
-  estado[p].pts+=pts;
   const entry={label,pts,hora:new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}),ts:Date.now(),id:Date.now()};
+  estado[p].pts+=pts;
   estado[p].hist.push(entry);
-  ultimoLancamento={pessoa:p,pts,id:entry.id};
-  saveToFirebase();updateUI();renderHistorico();
-  salvarBackupDiario();
+  ultimoLancamento={pessoa:p,entry};
+  updateUI();renderHistorico();
   showToast('+'+pts+' pts — '+label);
+  salvarIncremento(p,pts,entry);
+  salvarBackupDiario();
 };
 
 window.desfazerUltimo=function(){
   if(!ultimoLancamento) return;
-  const{pessoa,pts,id}=ultimoLancamento;
-  estado[pessoa].pts=Math.max(0,estado[pessoa].pts-pts);
-  estado[pessoa].hist=estado[pessoa].hist.filter(h=>h.id!==id);
+  const{pessoa,entry}=ultimoLancamento;
+  estado[pessoa].pts=Math.max(0,estado[pessoa].pts-entry.pts);
+  estado[pessoa].hist=estado[pessoa].hist.filter(h=>h.id!==entry.id);
   ultimoLancamento=null;
-  saveToFirebase();updateUI();renderHistorico();
+  updateUI();renderHistorico();
   showToast('Lançamento desfeito');
+  salvarDecremento(pessoa,entry);
 };
 
 function renderHistorico(){
@@ -696,8 +712,9 @@ window.removerLancamento=function(pessoaKey,entryId){
   if(!confirm('Remover "'+entry.label+'" (+'+entry.pts+' pts)? Os pontos serão descontados.')) return;
   estado[pessoaKey].pts=Math.max(0,estado[pessoaKey].pts-entry.pts);
   estado[pessoaKey].hist=estado[pessoaKey].hist.filter(h=>h.id!==entryId);
-  saveToFirebase();updateUI();renderAdminBody();
+  updateUI();renderAdminBody();
   showToast('Lançamento removido.');
+  salvarDecremento(pessoaKey,entry);
 };
 
 function renderAdminBody(){
@@ -721,18 +738,25 @@ function renderAdminBody(){
 }
 
 // BACKUP AUTOMÁTICO DIÁRIO
+// CORREÇÃO: antes o controle de "já fiz o backup de hoje" ficava no localStorage
+// (por navegador), então o backup de "hoje" não era um retrato fixo — qualquer
+// aparelho que ainda não tivesse marcado sua própria flag podia sobrescrevê-lo com
+// dados desatualizados. Agora a verificação é feita direto no Firestore (fonte
+// única e compartilhada) e os dados salvos vêm de uma leitura fresca do banco,
+// nunca do "estado" em memória do navegador.
 function getBackupId(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
-function getLastBackupKey(){return 'tribo_last_backup';}
 
 async function salvarBackupDiario(){
   const hoje=getBackupId();
-  const ultimoBackup=localStorage.getItem(getLastBackupKey());
-  if(ultimoBackup===hoje) return; // já salvou hoje
-  const totalPts=TODAS_PESSOAS.reduce((s,p)=>s+estado[p].pts,0);
-  if(totalPts===0) return; // não salva se tudo zerado
   try{
-    await setDoc(doc(db,'backups',hoje),{...estado,_savedAt:new Date().toISOString()},{merge:false});
-    localStorage.setItem(getLastBackupKey(),hoje);
+    const existente=await getDoc(doc(db,'backups',hoje));
+    if(existente.exists()) return; // já existe backup de hoje, não sobrescreve
+    const snapAtual=await getDoc(docRef);
+    if(!snapAtual.exists()) return;
+    const dados=snapAtual.data();
+    const totalPts=TODAS_PESSOAS.reduce((s,p)=>s+(dados[p]?.pts||0),0);
+    if(totalPts===0) return; // não salva se tudo zerado
+    await setDoc(doc(db,'backups',hoje),{...dados,_savedAt:new Date().toISOString()},{merge:false});
     console.log('Backup diário salvo:',hoje);
   }catch(e){console.log('Erro no backup:',e);}
 }
@@ -744,7 +768,9 @@ window.restaurarBackup=async function(backupId){
     if(!snap.exists()){showToast('Backup não encontrado.');return;}
     const data=snap.data();
     TODAS_PESSOAS.forEach(k=>{if(data[k])estado[k]=data[k];});
-    await saveToFirebase();
+    // Restauração é uma ação deliberada de sobrescrever TODO mundo com os dados do
+    // backup escolhido — aqui faz sentido escrever o objeto inteiro de propósito.
+    await setDoc(docRef,estado,{merge:false});
     updateUI();
     showToast('Backup restaurado com sucesso!');
     renderHistoricoMeses();
@@ -807,19 +833,31 @@ async function renderHistoricoMeses(){
   }catch(e){body.innerHTML='<div style="font-size:13px;color:#aaa">Erro ao carregar histórico.</div>';}
 }
 
-window.confirmarReset=function(){
+window.confirmarReset=async function(){
   const input=document.getElementById('confirm-reset-input');
   if(!input||input.value.trim().toUpperCase()!=='CONFIRMAR'){
     showToast('Digite CONFIRMAR para continuar.');
     return;
   }
-  const docId=getDocId();
-  setDoc(doc(db,'historico',docId),estado,{merge:false}).then(()=>{
-    TODAS_PESSOAS.forEach(p=>{estado[p].pts=0;estado[p].hist=[];});
-    saveToFirebase();updateUI();
+  try{
+    // Busca os dados direto do Firestore (não do "estado" em memória) antes de
+    // arquivar, pra garantir que o histórico do mês é fiel ao banco mesmo se este
+    // navegador estiver com cache desatualizado.
+    const snapAtual=await getDoc(docRef);
+    const dadosAtuais={};
+    TODAS_PESSOAS.forEach(p=>{
+      dadosAtuais[p]=(snapAtual.exists()&&snapAtual.data()[p])?snapAtual.data()[p]:{pts:0,hist:[]};
+    });
+    const docId=getDocId();
+    await setDoc(doc(db,'historico',docId),dadosAtuais,{merge:false});
+    const zerado={};
+    TODAS_PESSOAS.forEach(p=>{zerado[p]={pts:0,hist:[]};});
+    await setDoc(docRef,zerado,{merge:false});
+    TODAS_PESSOAS.forEach(p=>{estado[p]={pts:0,hist:[]};});
+    updateUI();
     input.value='';
     showToast('Histórico salvo. Novo mês iniciado.');
-  }).catch(()=>showToast('Erro ao salvar histórico.'));
+  }catch(e){showToast('Erro ao salvar histórico.');}
 };
 
 function showToast(msg){

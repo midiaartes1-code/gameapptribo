@@ -401,7 +401,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, getDocs, increment, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, getDocs, increment, arrayUnion, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBPx3cpPy9xuqExFtq0Q1SCqEufhcLej0w",
@@ -472,10 +472,22 @@ async function salvarIncremento(pessoaKey,pts,entry){
   }catch(e){showToast('Erro ao salvar. Verifique a conexão.');}
 }
 
+// Remove o lançamento pelo id dentro de uma transação.
+// Só desconta os pontos se o lançamento realmente existir no banco,
+// e recalcula o total a partir do histórico (evita desconto em dobro ou item "fantasma").
 async function salvarDecremento(pessoaKey,entry){
   try{
-    await setDoc(docRef,{[pessoaKey]:{pts:increment(-entry.pts),hist:arrayRemove(entry)}},{merge:true});
-  }catch(e){showToast('Erro ao salvar. Verifique a conexão.');}
+    await runTransaction(db,async(tx)=>{
+      const snap=await tx.get(docRef);
+      if(!snap.exists()) return;
+      const atual=snap.data()[pessoaKey];
+      if(!atual||!Array.isArray(atual.hist)) return;
+      const novoHist=atual.hist.filter(h=>h.id!==entry.id);
+      if(novoHist.length===atual.hist.length) return; // já tinha sido removido
+      const novoPts=novoHist.reduce((s,h)=>s+(Number(h.pts)||0),0);
+      tx.set(docRef,{[pessoaKey]:{pts:novoPts,hist:novoHist}},{merge:true});
+    });
+  }catch(e){showToast('Erro ao remover. Verifique a conexão.');}
 }
 
 window.showTab=function(t,btn){
@@ -577,16 +589,17 @@ function updateUI(){
   });
 
   // Ranking badges no painel
+  // Quem está com 0 ponto não aparece em posição nem com prêmio
   const sortedBarb=[...BARBEIROS].sort((a,b)=>estado[b].pts-estado[a].pts);
   sortedBarb.forEach((p,i)=>{
     const el=document.getElementById('rankbadge-'+p);
-    if(el) el.innerHTML=getRankLabel(i,PREMIOS_BARB[i]||0);
+    if(el) el.innerHTML=estado[p].pts>0?getRankLabel(i,PREMIOS_BARB[i]||0):'<span class="rank-badge rb-7">Sem pontos ainda</span>';
   });
 
   const sortedRecep=[...RECEPS].sort((a,b)=>estado[b].pts-estado[a].pts);
   sortedRecep.forEach((p,i)=>{
     const el=document.getElementById('rankbadge-'+p);
-    if(el) el.innerHTML=getRankLabelRecep(i,PREMIOS_RECEP[i]||0);
+    if(el) el.innerHTML=estado[p].pts>0?getRankLabelRecep(i,PREMIOS_RECEP[i]||0):'<span class="rank-badge rb-4">Sem pontos ainda</span>';
   });
 
   // Coletiva
@@ -602,26 +615,28 @@ function renderRanking(){
   const ranks=['r1','r2','r3','r4','r5','r6','r7','r8'];
   const sortedBarb=[...BARBEIROS].sort((a,b)=>estado[b].pts-estado[a].pts);
   document.getElementById('ranking-barb').innerHTML=sortedBarb.map((p,i)=>{
+    const temPts=estado[p].pts>0;
     const premio=PREMIOS_BARB[i]||0;
     return `<div class="ranking-item">
-      <div class="rank-num ${ranks[i]}">${i+1}</div>
+      <div class="rank-num ${temPts?ranks[i]:'r8'}">${temPts?i+1:'–'}</div>
       <div class="avatar av-${p}" style="width:30px;height:30px;font-size:11px">${NOMES[p][0]}</div>
       <div class="rank-name">${NOMES[p]}</div>
       <div class="rank-pts">${estado[p].pts} pts</div>
-      <div class="rank-premio">R$ ${premio}</div>
+      <div class="rank-premio">${temPts?'R$ '+premio:'—'}</div>
     </div>`;
   }).join('');
 
   const sortedRecep=[...RECEPS].sort((a,b)=>estado[b].pts-estado[a].pts);
   document.getElementById('ranking-recep').innerHTML=sortedRecep.map((p,i)=>{
+    const temPts=estado[p].pts>0;
     const premio=PREMIOS_RECEP[i]||0;
     const av=p==='adrielle'?'av-a':p==='raiany'?'av-r':p==='camilia'?'av-c':'av-s';
     return `<div class="ranking-item">
-      <div class="rank-num ${ranks[i]}">${i+1}</div>
+      <div class="rank-num ${temPts?ranks[i]:'r8'}">${temPts?i+1:'–'}</div>
       <div class="avatar ${av}" style="width:30px;height:30px;font-size:11px">${NOMES[p][0]}</div>
       <div class="rank-name">${NOMES[p]}</div>
       <div class="rank-pts">${estado[p].pts} pts</div>
-      <div class="rank-premio">R$ ${premio}</div>
+      <div class="rank-premio">${temPts?'R$ '+premio:'—'}</div>
     </div>`;
   }).join('');
 }
